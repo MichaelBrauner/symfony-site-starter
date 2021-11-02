@@ -1,0 +1,38 @@
+{% block locale_switcher %}
+    {% import 'util/transition.twig' as transition %}
+
+    {% set route = app.request.attributes.get('_route') %}
+    {% set route_params = app.request.attributes.get('_route_params') %}
+    {% set params = route_params|merge(app.request.query.all) %}
+
+    {% set listStyle = "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150 first" %}
+
+    <div class="nav-item dropdown relative" data-controller="show-content">
+
+        <button class="nav-link dropdown-toggle" id="dropdown-language" role="button"
+                data-show-content-target="opener"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ app.request.locale|locale_name(app.request.locale)|u.title }}
+        </button>
+
+        <div class="origin-top-right z-30 absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+                {{ transition.fadeInOut() }}
+             aria-labelledby="dropdown-language"
+             data-show-content-target="content">
+
+            <ul class="py-1 rounded-md bg-white shadow-xs" role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="dropdown-language">
+
+                {% for locale in locales|split('|') %}
+                    {% if locale != app.request.locale %}
+                        <li class="{{ listStyle }}">
+                            <a href="{{ path(route, params|merge({ _locale: locale })) }}">{{ locale|locale_name(app.request.locale)|u.title }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+{% endblock %}

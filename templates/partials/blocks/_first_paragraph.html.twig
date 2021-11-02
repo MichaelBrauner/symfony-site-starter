@@ -1,0 +1,12 @@
+<div class="container">
+    {% set route = app.request.get('_route') %}
+
+    {% if route is same as('homepage') %}
+        {{ 'general.here_comes_the_homepage'|trans }}
+    {% elseif  route is same as('agbs') %}
+        {{ 'general.here_comes_the_agbs'|trans }}
+    {% elseif  route is same as('imprint') %}
+        {{ 'general.here_comes_the_impressum'|trans }}
+    {% endif %}
+
+</div>

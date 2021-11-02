@@ -1,0 +1,14 @@
+general:
+  site_name: Whisper
+  change_language: Change language
+  imprint: Imprint
+  agb: AGB
+  here_comes_the_impressum: Here comes the imprint ;)
+  here_comes_the_agbs: Here we are - AGBS :D :D :D
+  here_comes_the_homepage: Here we are - HOMEPAGE :D :D :D
+
+
+  sites_names:
+    homepage: Homepage
+    agb: AGB
+    imprint: Imprint
